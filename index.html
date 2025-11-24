@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ဝဘ်ဆိုဒ်ခေါင်းစဉ် -->
+    <title>Saw A Soe - Prompt Engineer Portfolio</title>
+    
+    <!-- Tailwind CSS (အမြန်ဆုံး ဒီဇိုင်းရေးဆွဲရန်အတွက်) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons (အိုင်ကွန်များအတွက်) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter (အင်္ဂလိပ်) နှင့် Padauk (မြန်မာ) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Config for Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        burmese: ['Padauk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            accent: '#38bdf8', // Light Blue
+                            purple: '#a855f7', // Purple
+                            surface: '#1e293b'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Myanmar Font Override class */
+        .mm-font {
+            font-family: 'Padauk', sans-serif;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- နောက်ခံအရောင်အသွေး အလှဆင်ခြင်း -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-purple opacity-20 rounded-full mix-blend-screen filter blur-3xl animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-accent opacity-20 rounded-full mix-blend-screen filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-600 opacity-20 rounded-full mix-blend-screen filter blur-3xl animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navigation Bar (အပေါ်ဆုံးမီနူး) -->
+    <nav class="fixed w-full z-50 glass border-b border-slate-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-bold text-white tracking-tighter">
+                        Vibe<span class="text-brand-accent">.Code</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium" data-key="nav_about">About</a>
+                        <a href="#skills" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium" data-key="nav_skills">Skills</a>
+                        <a href="#certificates" class="hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium" data-key="nav_certs">Certificates</a>
+                        <a href="#contact" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-slate-900/50 border border-slate-700" data-key="nav_contact">Contact Me</a>
+                    </div>
+                </div>
+
+                <!-- Language Toggle (ဘာသာစကားပြောင်းရန်) -->
+                <div class="flex items-center gap-4">
+                    <button id="langToggle" class="flex items-center gap-2 px-3 py-1 rounded-full border border-slate-700 bg-slate-800/50 hover:bg-slate-700 transition-colors text-xs font-bold text-white uppercase tracking-wider">
+                        <span id="currentLang">EN</span>
+                        <i class="fa-solid fa-language text-lg text-brand-accent"></i>
+                    </button>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="-mr-2 flex md:hidden">
+                        <button type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+                            <i class="fa-solid fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-brand-dark border-b border-slate-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-key="nav_about">About</a>
+                <a href="#skills" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-key="nav_skills">Skills</a>
+                <a href="#certificates" class="text-slate-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-key="nav_certs">Certificates</a>
+                <a href="#contact" class="text-brand-accent block px-3 py-2 rounded-md text-base font-medium" data-key="nav_contact">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (မိတ်ဆက်အပိုင်း) -->
+    <section class="relative z-10 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-sm mb-8 animate-fade-in">
+                <span class="flex h-2 w-2 relative mr-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-sm font-medium text-slate-300" data-key="hero_badge">Available for New Projects</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 animate-fade-in" style="animation-delay: 0.1s;">
+                <span data-key="hero_title_1">I am</span> <br class="md:hidden" />
+                <span class="text-gradient">Saw A Soe, Prompt Engineer</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 animate-fade-in mm-font" style="animation-delay: 0.2s;" data-key="hero_subtitle">
+                Mastering the art of AI communication. I build web and mobile apps through Vibe Coding, blending technical precision with creative problem solving.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="animation-delay: 0.3s;">
+                <a href="#contact" class="px-8 py-4 rounded-full bg-white text-brand-dark font-bold hover:bg-slate-200 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center justify-center gap-2">
+                    <span data-key="hero_cta_primary">Let's Connect</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#skills" class="px-8 py-4 rounded-full border border-slate-600 hover:border-slate-400 hover:bg-slate-800/50 transition-all text-white font-medium flex items-center justify-center gap-2">
+                    <span data-key="hero_cta_secondary">View Skills</span>
+                    <i class="fa-solid fa-code"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (ကျွမ်းကျင်မှုများ) -->
+    <section id="skills" class="relative z-10 py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-key="skills_title">Technical Arsenal</h2>
+                <div class="h-1 w-20 bg-brand-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1: Prompt Engineering -->
+                <div class="group relative p-8 rounded-2xl bg-brand-surface border border-slate-800 hover:border-brand-accent/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-accent/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-robot text-6xl text-brand-accent"></i>
+                    </div>
+                    <div class="h-12 w-12 rounded-lg bg-brand-accent/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xl text-brand-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="skill_1_title">Prompt Engineering</h3>
+                    <p class="text-slate-400 leading-relaxed mm-font" data-key="skill_1_desc">Expert in crafting precise prompts for LLMs (Gemini, GPT) to generate code, content, and complex logic efficiently.</p>
+                </div>
+
+                <!-- Skill Card 2: Vibe Coding (Web/App) -->
+                <div class="group relative p-8 rounded-2xl bg-brand-surface border border-slate-800 hover:border-brand-purple/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-purple/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-mobile-screen text-6xl text-brand-purple"></i>
+                    </div>
+                    <div class="h-12 w-12 rounded-lg bg-brand-purple/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-layer-group text-xl text-brand-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="skill_2_title">Vibe Coding (Web/App)</h3>
+                    <p class="text-slate-400 leading-relaxed mm-font" data-key="skill_2_desc">Building full-stack web and mobile applications rapidly using AI-assisted workflows and modern frameworks.</p>
+                </div>
+
+                <!-- Skill Card 3: Image Generation -->
+                <div class="group relative p-8 rounded-2xl bg-brand-surface border border-slate-800 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-pink-500/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-image text-6xl text-pink-500"></i>
+                    </div>
+                    <div class="h-12 w-12 rounded-lg bg-pink-500/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-paintbrush text-xl text-pink-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="skill_3_title">Image Generation</h3>
+                    <p class="text-slate-400 leading-relaxed mm-font" data-key="skill_3_desc">Creating professional assets and UI resources using advanced generative AI tools like Midjourney and Stable Diffusion.</p>
+                </div>
+
+                <!-- Skill Card 4: Problem Solving -->
+                <div class="group relative p-8 rounded-2xl bg-brand-surface border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-brain text-6xl text-emerald-500"></i>
+                    </div>
+                    <div class="h-12 w-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-puzzle-piece text-xl text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="skill_4_title">Problem Solving</h3>
+                    <p class="text-slate-400 leading-relaxed mm-font" data-key="skill_4_desc">Analytical approach to debugging and optimizing workflows. Turning complex requirements into executable solutions.</p>
+                </div>
+
+                <!-- Skill Card 5: Soft Skills -->
+                <div class="group relative p-8 rounded-2xl bg-brand-surface border border-slate-800 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-500/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-users text-6xl text-orange-500"></i>
+                    </div>
+                    <div class="h-12 w-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-handshake text-xl text-orange-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="skill_5_title">Soft Skills</h3>
+                    <p class="text-slate-400 leading-relaxed mm-font" data-key="skill_5_desc">Effective communication, adaptability, and collaboration within agile environments. Bridging the gap between humans and AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section (အောင်လက်မှတ်များ) -->
+    <section id="certificates" class="relative z-10 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2" data-key="cert_title">Certifications</h2>
+                    <p class="text-slate-400" data-key="cert_subtitle">Professional validation of my expertise.</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <button class="text-brand-accent hover:text-white transition-colors font-medium flex items-center gap-2">
+                        <span data-key="view_all">View All</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Certificates Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cert 1: Google Coursera - Start Writing Prompts like a Pro -->
+                <div class="bg-brand-surface rounded-xl overflow-hidden border border-slate-800 hover:border-brand-accent hover:shadow-lg hover:shadow-brand-accent/20 transition-all group">
+                    <div class="h-64 bg-slate-900 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center border-b border-slate-800">
+                        <!-- Icon Placeholder for Google/Coursera -->
+                        <div class="mb-4 p-4 rounded-full bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                           <i class="fa-brands fa-google text-5xl text-white"></i>
+                        </div>
+                        <h4 class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-1">Google Career Certificate</h4>
+                        
+                        <!-- Hover Overlay - အောင်လက်မှတ်ကြည့်ရန် -->
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                            <a href="https://coursera.org/verify/VPWTOQOW6LP4" target="_blank" class="bg-white text-brand-dark px-6 py-2 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-brand-accent hover:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-certificate"></i> Verify Credential
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white leading-tight">Start Writing Prompts like a Pro</h3>
+                            <span class="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20 whitespace-nowrap ml-2">Nov 2025</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-4">Authorized by Google and offered through Coursera</p>
+                        <div class="flex items-center gap-2 text-xs text-slate-500">
+                            <i class="fa-solid fa-user-check"></i>
+                            <span>Saw A Soe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2 (Placeholder for future) -->
+                <div class="bg-brand-surface rounded-xl overflow-hidden border border-slate-800 hover:border-slate-600 transition-all group opacity-75 hover:opacity-100">
+                    <div class="h-64 bg-slate-800 relative overflow-hidden">
+                        <!-- Placeholder Image -->
+                        <div clas
